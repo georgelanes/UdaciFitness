@@ -169,7 +169,7 @@ class AddEntry extends Component {
     }
 }
 
-function mapStateProps(state) {
+function mapStateToProps(state) {
     const key = timeToString()
 
     return {
@@ -177,4 +177,4 @@ function mapStateProps(state) {
     }
 }
 
-export default connect(mapStateProps)(AddEntry)
+export default connect(mapStateToProps)(AddEntry)
