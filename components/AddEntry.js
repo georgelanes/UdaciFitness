@@ -3,7 +3,7 @@ import { Text, View, TouchableOpacity, Platform, StyleSheet } from 'react-native
 import { getMetricMetaInfo, timeToString, getDailyReminderValue } from '../utils/helpers';
 import { Ionicons } from '@expo/vector-icons'
 import {connect} from 'react-redux'
-
+import { NavigationActions } from 'react-navigation'
 import  {   addEntry } from '../actions'
 
 import UdaciSlider from './UdaciSlider'
@@ -117,6 +117,8 @@ class AddEntry extends Component {
             run:0, bike:0, swim:0, sleep:0, eat:0
         }))
 
+        this.toHome()
+
         submitEntry({entry, key})
     }
 
@@ -126,8 +128,17 @@ class AddEntry extends Component {
         this.props.dispatch(addEntry({
             [key]: getDailyReminderValue()
         }))
+        
+        this.toHome()
 
         removeEntry(key)
+    }
+
+
+    toHome = () => {
+        this.props.navigation.dispatch(NavigationActions.back({
+            key:'AddEntry'
+        }))
     }
 
     render(){
